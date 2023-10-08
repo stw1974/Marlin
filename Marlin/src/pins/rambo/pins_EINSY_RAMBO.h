@@ -237,7 +237,7 @@
     #endif
 
     #define BTN_ENC                  EXP1_02_PIN  // P1
-    #define BEEPER_PIN               EXP1_01_PIN  // P1
+    //#define BEEPER_PIN               EXP1_01_PIN  // P1
     #define SD_DETECT_PIN            EXP2_07_PIN
 
   #endif // IS_ULTIPANEL || TOUCH_UI_ULTIPANEL
