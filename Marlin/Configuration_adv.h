@@ -559,9 +559,9 @@
 
 // Calibration for AD595 / AD8495 sensor to adjust temperature measurements.
 // The final temperature is calculated as (measuredTemp * GAIN) + OFFSET.
-//#define TEMP_SENSOR_AD595_OFFSET  0
+#define TEMP_SENSOR_AD595_OFFSET  0
 #define TEMP_SENSOR_AD595_GAIN    1.0
-//#define TEMP_SENSOR_AD8495_OFFSET 0
+#define TEMP_SENSOR_AD8495_OFFSET 0
 #define TEMP_SENSOR_AD8495_GAIN   1.0
 
 /**
@@ -1249,7 +1249,7 @@
  * See https://hydraraptor.blogspot.com/2010/12/frequency-limit.html
  * Use M201 F<freq> G<min%> to change limits at runtime.
  */
-#define XY_FREQUENCY_LIMIT      10 // (Hz) Maximum frequency of small zigzag infill moves. Set with M201 F<hertz>.
+//#define XY_FREQUENCY_LIMIT      10 // (Hz) Maximum frequency of small zigzag infill moves. Set with M201 F<hertz>.
 #ifdef XY_FREQUENCY_LIMIT
   #define XY_FREQUENCY_MIN_PERCENT 5 // (percent) Minimum FR percentage to apply. Set with M201 G<min%>.
 #endif
@@ -1368,7 +1368,7 @@
  * Multi-stepping sends steps in bursts to reduce MCU usage for high step-rates.
  * This allows higher feedrates than the MCU could otherwise support.
  */
-#define MULTISTEPPING_LIMIT   128  //: [1, 2, 4, 8, 16, 32, 64, 128]
+#define MULTISTEPPING_LIMIT   16  //: [1, 2, 4, 8, 16, 32, 64, 128]
 
 /**
  * Adaptive Step Smoothing increases the resolution of multi-axis moves, particularly at step frequencies
@@ -1463,7 +1463,7 @@
 #define ENCODER_RATE_MULTIPLIER
 #if ENABLED(ENCODER_RATE_MULTIPLIER)
   #define ENCODER_10X_STEPS_PER_SEC   50  // (steps/s) Encoder rate for 10x speed
-  #define ENCODER_100X_STEPS_PER_SEC  200  // (steps/s) Encoder rate for 100x speed
+  #define ENCODER_100X_STEPS_PER_SEC  100  // (steps/s) Encoder rate for 100x speed
 #endif
 
 // Play a beep when the feedrate is changed from the Status Screen
@@ -1563,8 +1563,8 @@
     //#define CUSTOM_STATUS_SCREEN_IMAGE  // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
   #endif
 
-  //#define SOUND_MENU_ITEM   // Add a mute option to the LCD menu
-  //#define SOUND_ON_DEFAULT    // Buzzer/speaker default enabled state
+  #define SOUND_MENU_ITEM   // Add a mute option to the LCD menu
+  #define SOUND_ON_DEFAULT    // Buzzer/speaker default enabled state
 
   // The timeout to return to the status screen from sub-menus
   #define LCD_TIMEOUT_TO_STATUS 60000     // (ms)
@@ -2277,7 +2277,7 @@
   #if ENABLED(DISTINCT_E_FACTORS)
     #define ADVANCE_K { 0.22 }    // (mm) Compression length per 1mm/s extruder speed, per extruder
   #else
-    #define ADVANCE_K 0        // (mm) Compression length applying to all extruders
+    #define ADVANCE_K 0.07        // (mm) Compression length applying to all extruders
   #endif
   //#define ADVANCE_K_EXTRA       // Add a second linear advance constant, configurable with M900 L.
   //#define LA_DEBUG              // Print debug information to serial during operation. Disable for production use.
@@ -2332,18 +2332,18 @@
  * the probe to be unable to reach any points.
  */
 #if PROBE_SELECTED && !IS_KINEMATIC
-  //#define PROBING_MARGIN_LEFT 25
-  //#define PROBING_MARGIN_RIGHT 25
-  //#define PROBING_MARGIN_FRONT 10
-  //#define PROBING_MARGIN_BACK 10
+  #define PROBING_MARGIN_LEFT 0
+  #define PROBING_MARGIN_RIGHT 0
+  #define PROBING_MARGIN_FRONT 0
+  #define PROBING_MARGIN_BACK 0
 #endif
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL)
   // Override the mesh area if the automatic (max) area is too large
-  //#define MESH_MIN_X 23
-  //#define MESH_MIN_Y 1
-  //#define MESH_MAX_X 227
-  //#define MESH_MAX_Y 211
+  #define MESH_MIN_X 25
+  #define MESH_MIN_Y 5
+  #define MESH_MAX_X 225
+  #define MESH_MAX_Y 205
 #endif
 
 #if ALL(AUTO_BED_LEVELING_UBL, EEPROM_SETTINGS)
@@ -2676,7 +2676,7 @@
  *
  * Note that M207 / M208 / M209 settings are saved to EEPROM.
  */
-#define FWRETRACT
+#define FWRETRACT //0 off by default 1 on by default
 #if ENABLED(FWRETRACT)
   #define FWRETRACT_AUTORETRACT             // Override slicer retractions
   #if ENABLED(FWRETRACT_AUTORETRACT)
@@ -2686,7 +2686,7 @@
   #define RETRACT_LENGTH                0.8 // (mm) Default retract length (positive value)
   #define RETRACT_LENGTH_SWAP          13   // (mm) Default swap retract length (positive value)
   #define RETRACT_FEEDRATE             35   // (mm/s) Default feedrate for retracting
-  #define RETRACT_ZRAISE                0.2 // (mm) Default retract Z-raise
+  #define RETRACT_ZRAISE                .2 // (mm) Default retract Z-raise
   #define RETRACT_RECOVER_LENGTH        0   // (mm) Default additional recover length (added to retract length on recover)
   #define RETRACT_RECOVER_LENGTH_SWAP   0   // (mm) Default additional swap recover length (added to retract length on recover from toolchange)
   #define RETRACT_RECOVER_FEEDRATE      35  // (mm/s) Default feedrate for recovering from retraction
@@ -2889,7 +2889,7 @@
   #define INTERPOLATE      true
 
   #if AXIS_IS_TMC_CONFIG(X)
-    #define X_CURRENT       650        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT       550        // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_CURRENT_HOME  260        // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS     16        // 0..256
     #define X_RSENSE          0.2      // Multiplied x1000 for TMC26X2
@@ -2910,7 +2910,7 @@
 
   #if AXIS_IS_TMC_CONFIG(Y)
     //#define Y_CURRENT       348
-    #define Y_CURRENT       650 // custom
+    #define Y_CURRENT       550 // custom
     //#define Y_CURRENT_HOME  182
     #define Y_CURRENT_HOME  260  // custom
     #define Y_MICROSTEPS     16
@@ -3370,7 +3370,7 @@
   /**
    * Step on both rising and falling edge signals (as with a square wave).
    */
-  #define EDGE_STEPPING
+  //#define EDGE_STEPPING
 
   /**
    * Enable M122 debugging command for TMC stepper drivers.
