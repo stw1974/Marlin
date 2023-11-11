@@ -586,15 +586,15 @@
 #else
  #define TEMP_SENSOR_PROBE 1
 #endif
-//#define TEMP_SENSOR_CHAMBER 0
-//#define TEMP_SENSOR_COOLER 0
-//#define TEMP_SENSOR_BOARD 0
-//#define TEMP_SENSOR_SOC 0
-//#define TEMP_SENSOR_REDUNDANT 0
+#define TEMP_SENSOR_CHAMBER 0
+#define TEMP_SENSOR_COOLER 0
+#define TEMP_SENSOR_BOARD 0
+#define TEMP_SENSOR_SOC 0
+#define TEMP_SENSOR_REDUNDANT 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
-//#define DUMMY_THERMISTOR_998_VALUE  25
-//#define DUMMY_THERMISTOR_999_VALUE 100
+#define DUMMY_THERMISTOR_998_VALUE  25
+#define DUMMY_THERMISTOR_999_VALUE 100
 
 // Resistor values when using MAX31865 sensors (-5) on TEMP_SENSOR_0 / 1
 #if TEMP_SENSOR_IS_MAX_TC(0)
@@ -655,7 +655,7 @@
 #define HEATER_6_MINTEMP   5
 #define HEATER_7_MINTEMP   5
 #define BED_MINTEMP       10
-//#define CHAMBER_MINTEMP    5
+#define CHAMBER_MINTEMP    5
 
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
@@ -669,7 +669,7 @@
 #define HEATER_6_MAXTEMP 275
 #define HEATER_7_MAXTEMP 275
 #define BED_MAXTEMP      125
-//#define CHAMBER_MAXTEMP  60
+#define CHAMBER_MAXTEMP  60
 
 /**
  * Thermal Overshoot
@@ -679,7 +679,7 @@
  */
 #define HOTEND_OVERSHOOT 15   // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT
 #define BED_OVERSHOOT    10   // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT
-//#define COOLER_OVERSHOOT  2   // (°C) Forbid temperatures closer than OVERSHOOT
+#define COOLER_OVERSHOOT  2   // (°C) Forbid temperatures closer than OVERSHOOT
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -850,7 +850,7 @@
  * When set to any value below 255, enables a form of PWM to the chamber heater that acts like a divider
  * so don't use it unless you are OK with PWM on your heater. (See the comment on enabling PIDTEMPCHAMBER)
  */
-//#define MAX_CHAMBER_POWER 255 // limits duty cycle to chamber heater; 255=full current
+#define MAX_CHAMBER_POWER 255 // limits duty cycle to chamber heater; 255=full current
 
 #if ENABLED(PIDTEMPCHAMBER)
   #define MIN_CHAMBER_POWER 0
@@ -873,8 +873,8 @@
   #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
-  //#define PID_EDIT_MENU           // Add PID editing to the "Advanced Settings" menu. (~700 bytes of flash)
-  //#define PID_AUTOTUNE_MENU       // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of flash)
+  #define PID_EDIT_MENU           // Add PID editing to the "Advanced Settings" menu. (~700 bytes of flash)
+  #define PID_AUTOTUNE_MENU       // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of flash)
 #endif
 
 // @section safety
@@ -915,8 +915,8 @@
 
 #define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders
 #define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed
-//#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
-//#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
+#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
+#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
 
 //===========================================================================
 //============================= Mechanical Settings =========================
@@ -1660,8 +1660,8 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-#define MULTIPLE_PROBING 9
-#define EXTRA_PROBING    3
+#define MULTIPLE_PROBING 2
+#define EXTRA_PROBING    1
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1714,7 +1714,7 @@
 //#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
 // Require minimum nozzle and/or bed temperature for probing
-#define PREHEAT_BEFORE_PROBING
+//#define PREHEAT_BEFORE_PROBING
 #if ENABLED(PREHEAT_BEFORE_PROBING)
   #define PROBING_NOZZLE_TEMP 215   // (°C) Only applies to E0 at this time
   #define PROBING_BED_TEMP     60
@@ -2303,7 +2303,7 @@
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)
-#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (12*60) }
+#define HOMING_FEEDRATE_MM_M { (100*60), (100*60), (12*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -2338,7 +2338,7 @@
  *    +-------------->X     +-------------->X     +-------------->Y
  *     XY_SKEW_FACTOR        XZ_SKEW_FACTOR        YZ_SKEW_FACTOR
  */
-//#define SKEW_CORRECTION
+#define SKEW_CORRECTION
 
 #if ENABLED(SKEW_CORRECTION)
   // Input all length measurements here:
@@ -2383,7 +2383,7 @@
  */
 #define EEPROM_SETTINGS       // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of flash. Disable for release!
-//#define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
+#define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
   //#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
@@ -2425,35 +2425,35 @@
 #define PREHEAT_1_TEMP_CHAMBER 35
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
-//#define PREHEAT_2_LABEL      "PETG"
-//#define PREHEAT_2_TEMP_HOTEND 230
-//#define PREHEAT_2_TEMP_BED     85
-//#define PREHEAT_2_TEMP_CHAMBER 35
-//#define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
+#define PREHEAT_2_LABEL      "PETG"
+#define PREHEAT_2_TEMP_HOTEND 230
+#define PREHEAT_2_TEMP_BED     85
+#define PREHEAT_2_TEMP_CHAMBER 35
+#define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
 
-//#define PREHEAT_3_LABEL       "ASA"
-//#define PREHEAT_3_TEMP_HOTEND 260
-//#define PREHEAT_3_TEMP_BED    105
-//#define PREHEAT_3_TEMP_CHAMBER 35
-//#define PREHEAT_3_FAN_SPEED     0
+#define PREHEAT_3_LABEL       "ASA"
+#define PREHEAT_3_TEMP_HOTEND 260
+#define PREHEAT_3_TEMP_BED    105
+#define PREHEAT_3_TEMP_CHAMBER 35
+#define PREHEAT_3_FAN_SPEED     0
 
-//#define PREHEAT_4_LABEL       "TPU"
-//#define PREHEAT_4_TEMP_HOTEND 230
-//#define PREHEAT_4_TEMP_BED     50
-//#define PREHEAT_4_TEMP_CHAMBER 35
-//#define PREHEAT_4_FAN_SPEED     0
+#define PREHEAT_4_LABEL       "TPU"
+#define PREHEAT_4_TEMP_HOTEND 230
+#define PREHEAT_4_TEMP_BED     50
+#define PREHEAT_4_TEMP_CHAMBER 35
+#define PREHEAT_4_FAN_SPEED     0
 
-//#define PREHEAT_5_LABEL       "GTP" // Extrudr GreenTEC Pro
-//#define PREHEAT_5_TEMP_HOTEND 225
-//#define PREHEAT_5_TEMP_BED     50
-//#define PREHEAT_5_TEMP_CHAMBER 35
-//#define PREHEAT_5_FAN_SPEED     0
+#define PREHEAT_5_LABEL       "GTP" // Extrudr GreenTEC Pro
+#define PREHEAT_5_TEMP_HOTEND 225
+#define PREHEAT_5_TEMP_BED     50
+#define PREHEAT_5_TEMP_CHAMBER 35
+#define PREHEAT_5_FAN_SPEED     0
 
-//#define PREHEAT_6_LABEL        "PC"
-//#define PREHEAT_6_TEMP_HOTEND 275
-//#define PREHEAT_6_TEMP_BED    110
-//#define PREHEAT_6_TEMP_CHAMBER 35
-//#define PREHEAT_6_FAN_SPEED     0
+#define PREHEAT_6_LABEL        "PC"
+#define PREHEAT_6_TEMP_HOTEND 275
+#define PREHEAT_6_TEMP_BED    110
+#define PREHEAT_6_TEMP_CHAMBER 35
+#define PREHEAT_6_FAN_SPEED     0
 
 // @section motion
 
@@ -2476,7 +2476,7 @@
   #define NOZZLE_PARK_MOVE          0   // Park motion: 0 = XY Move, 1 = X Only, 2 = Y Only, 3 = X before Y, 4 = Y before X
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
   #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
-  #define NOZZLE_PARK_Z_FEEDRATE    5   // (mm/s) Z axis feedrate (not used for delta printers)
+  #define NOZZLE_PARK_Z_FEEDRATE   12   // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
 
 /**
@@ -2775,7 +2775,7 @@
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-#define INDIVIDUAL_AXIS_HOMING_MENU
+//#define INDIVIDUAL_AXIS_HOMING_MENU
 //#define INDIVIDUAL_AXIS_HOMING_SUBMENU
 
 //
@@ -2793,8 +2793,8 @@
 // Note: Test audio output with the G-Code:
 //  M300 S<frequency Hz> P<duration ms>
 //
-//#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 2
-//#define LCD_FEEDBACK_FREQUENCY_HZ 5000
+#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 2
+#define LCD_FEEDBACK_FREQUENCY_HZ 5000
 
 //
 // Tone queue size, used to keep beeps from blocking execution.
