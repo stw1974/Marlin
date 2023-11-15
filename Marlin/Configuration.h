@@ -646,7 +646,7 @@
 
 // Below this temperature the heater will be switched off
 // because it probably indicates a broken thermistor wire.
-#define HEATER_0_MINTEMP  10
+#define HEATER_0_MINTEMP  5
 #define HEATER_1_MINTEMP   5
 #define HEATER_2_MINTEMP   5
 #define HEATER_3_MINTEMP   5
@@ -654,7 +654,7 @@
 #define HEATER_5_MINTEMP   5
 #define HEATER_6_MINTEMP   5
 #define HEATER_7_MINTEMP   5
-#define BED_MINTEMP       10
+#define BED_MINTEMP       5
 //#define CHAMBER_MINTEMP    5
 
 // Above this temperature the heater will be switched off.
@@ -1269,7 +1269,7 @@
 #if ENABLED(GEARBOX_BEAR)
   #define DEFAULT_AXIS_STEPS_PER_UNIT { 100, 100, 3200/8, 490 }
 #else
-  #define DEFAULT_AXIS_STEPS_PER_UNIT { 100, 100, 3200/8, 280 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT { 200, 200, 3200/8, 280 }
 #endif
 
 /**
@@ -1660,8 +1660,8 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-#define MULTIPLE_PROBING 9
-#define EXTRA_PROBING    3
+#define MULTIPLE_PROBING 3
+#define EXTRA_PROBING    1
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1714,7 +1714,7 @@
 //#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
 // Require minimum nozzle and/or bed temperature for probing
-#define PREHEAT_BEFORE_PROBING
+//#define PREHEAT_BEFORE_PROBING
 #if ENABLED(PREHEAT_BEFORE_PROBING)
   #define PROBING_NOZZLE_TEMP 215   // (°C) Only applies to E0 at this time
   #define PROBING_BED_TEMP     60
